@@ -1,8 +1,8 @@
 {
   "_meta": {
-    "version": "5.8.4",
+    "version": "5.8.5",
     "updated": "2026-09-16",
-    "description": "YOY Unified AI Model Registry — SINGLE SOURCE OF TRUTH. All provider/model data verified from official provider websites July 2026. Covers LLM chat, image gen, video gen, audio/TTS/STT, web search, embeddings, and music generation. Rebuilt 2026-08-23: legacy models hidden, specialists removed from chat, current models verified from official websites. | v5.8.2: zai vision-routing fix, coding-plan support per docs.z.ai (2026-09-16) | v5.8.4: web-search capability matrix verified per provider (docs.z.ai web_search, docs.claude.com web_search tool, xAI live search, DashScope enable_search); Perplexity sonar + Z.AI GLM + Anthropic Claude now search-enabled on the same chat key.",
+    "description": "YOY Unified AI Model Registry — SINGLE SOURCE OF TRUTH. All provider/model data verified from official provider websites July 2026. Covers LLM chat, image gen, video gen, audio/TTS/STT, web search, embeddings, and music generation. Rebuilt 2026-08-23: legacy models hidden, specialists removed from chat, current models verified from official websites. | v5.8.2: zai vision-routing fix, coding-plan support per docs.z.ai (2026-09-16) | v5.8.4: web-search capability matrix verified per provider (docs.z.ai web_search, docs.claude.com web_search tool, xAI live search, DashScope enable_search); Perplexity sonar + Z.AI GLM + Anthropic Claude now search-enabled on the same chat key. | v5.8.5: specialist-surface cleanup — dead/never-existed ids hidden (dall-e-3 removed 2026-05-12, dall-e-4/sora-turbo/veo-4 non-existent, imagen-3.0 shut down, lyria-2/3 superseded by Lyria 3.5).",
     "costTierLegend": {
       "$": "Free or near-free (<$0.50/1M tokens input)",
       "$$": "Budget ($0.50-$5/1M tokens input)",
@@ -509,9 +509,9 @@
           ],
           "chatRole": "specialized",
           "uiPlacement": {
-            "capabilitiesSelectable": true,
+            "capabilitiesSelectable": false,
             "mainApiSelectable": false,
-            "imageGenSelectable": true,
+            "imageGenSelectable": false,
             "videoGenSelectable": false,
             "musicGenSelectable": false,
             "visionSelectable": false,
@@ -542,7 +542,8 @@
           "source": "https://openai.com",
           "visible": false,
           "_hiddenReason": "removed from API 2026-05-12 (OpenAI changelog)",
-          "_hiddenAt": "2026-08-23"
+          "_hiddenAt": "2026-08-23",
+          "hidden": true
         },
         "tts-1": {
           "label": "TTS-1",
@@ -1102,9 +1103,9 @@
           ],
           "chatRole": "specialized",
           "uiPlacement": {
-            "capabilitiesSelectable": true,
+            "capabilitiesSelectable": false,
             "mainApiSelectable": false,
-            "imageGenSelectable": true
+            "imageGenSelectable": false
           },
           "costTier": "$$",
           "costIn": 0,
@@ -1132,7 +1133,8 @@
           "source": "https://developers.openai.com/api/docs/models",
           "visible": false,
           "_hiddenReason": "never an API model — OpenAI consolidated to gpt-image-2",
-          "_hiddenAt": "2026-08-23"
+          "_hiddenAt": "2026-08-23",
+          "hidden": true
         },
         "whisper-large-v4": {
           "label": "Whisper Large v4",
@@ -1180,9 +1182,9 @@
           ],
           "chatRole": "specialized",
           "uiPlacement": {
-            "capabilitiesSelectable": true,
+            "capabilitiesSelectable": false,
             "mainApiSelectable": false,
-            "videoGenSelectable": true
+            "videoGenSelectable": false
           },
           "costTier": "$$$",
           "costIn": 0,
@@ -1209,7 +1211,8 @@
           "source": "https://platform.openai.com/docs/models",
           "visible": false,
           "_hiddenReason": "legacy; removed",
-          "_hiddenAt": "2026-08-23"
+          "_hiddenAt": "2026-08-23",
+          "hidden": true
         },
         "sora": {
           "label": "Sora",
@@ -1219,9 +1222,9 @@
           ],
           "chatRole": "specialized",
           "uiPlacement": {
-            "capabilitiesSelectable": true,
+            "capabilitiesSelectable": false,
             "mainApiSelectable": false,
-            "videoGenSelectable": true
+            "videoGenSelectable": false
           },
           "costTier": "$$$$",
           "costIn": 0,
@@ -1251,7 +1254,8 @@
           "source": "https://platform.openai.com/docs/models",
           "visible": false,
           "_hiddenReason": "sora-1 era; removed",
-          "_hiddenAt": "2026-08-23"
+          "_hiddenAt": "2026-08-23",
+          "hidden": true
         },
         "sora-2": {
           "label": "Sora 2",
@@ -2738,9 +2742,9 @@
           ],
           "chatRole": "specialized",
           "uiPlacement": {
-            "capabilitiesSelectable": true,
+            "capabilitiesSelectable": false,
             "mainApiSelectable": false,
-            "musicGenSelectable": true
+            "musicGenSelectable": false
           },
           "costTier": "$$",
           "costIn": 0,
@@ -2762,7 +2766,8 @@
           },
           "riskFlags": [],
           "lastVerified": "2026-07-31",
-          "source": "https://ai.google.dev/"
+          "source": "https://ai.google.dev/",
+          "hidden": true
         },
         "gemini-3.5-flash-cyber": {
           "label": "Gemini 3.5 Flash Cyber",
@@ -2820,9 +2825,9 @@
           ],
           "chatRole": "specialized",
           "uiPlacement": {
-            "capabilitiesSelectable": true,
+            "capabilitiesSelectable": false,
             "mainApiSelectable": false,
-            "imageGenSelectable": true,
+            "imageGenSelectable": false,
             "videoGenSelectable": false,
             "musicGenSelectable": false,
             "visionSelectable": false,
@@ -2852,7 +2857,8 @@
           "source": "https://google.com",
           "visible": false,
           "_hiddenReason": "deprecated; Gemini API image now Nano Banana line",
-          "_hiddenAt": "2026-08-23"
+          "_hiddenAt": "2026-08-23",
+          "hidden": true
         },
         "veo-3.0": {
           "label": "Veo 3.0",
@@ -2906,10 +2912,10 @@
           ],
           "chatRole": "specialized",
           "uiPlacement": {
-            "capabilitiesSelectable": true,
+            "capabilitiesSelectable": false,
             "mainApiSelectable": false,
             "imageGenSelectable": false,
-            "videoGenSelectable": true,
+            "videoGenSelectable": false,
             "musicGenSelectable": false,
             "visionSelectable": false,
             "ttsSelectable": false,
@@ -2940,7 +2946,8 @@
           "source": "https://google.com",
           "visible": false,
           "_hiddenReason": "deprecated (Gemini API changelog)",
-          "_hiddenAt": "2026-08-23"
+          "_hiddenAt": "2026-08-23",
+          "hidden": true
         },
         "veo-4": {
           "label": "Veo 4",
@@ -2950,10 +2957,10 @@
           ],
           "chatRole": "specialized",
           "uiPlacement": {
-            "capabilitiesSelectable": true,
+            "capabilitiesSelectable": false,
             "mainApiSelectable": false,
             "imageGenSelectable": false,
-            "videoGenSelectable": true,
+            "videoGenSelectable": false,
             "musicGenSelectable": false,
             "visionSelectable": false,
             "ttsSelectable": false,
@@ -2986,7 +2993,8 @@
           "source": "https://google.com",
           "visible": false,
           "_hiddenReason": "no such Gemini API model ID — fabricated entry",
-          "_hiddenAt": "2026-08-23"
+          "_hiddenAt": "2026-08-23",
+          "hidden": true
         },
         "lyria-3.5": {
           "label": "Lyria 3.5",
@@ -3034,11 +3042,11 @@
           ],
           "chatRole": "specialized",
           "uiPlacement": {
-            "capabilitiesSelectable": true,
+            "capabilitiesSelectable": false,
             "mainApiSelectable": false,
             "imageGenSelectable": false,
             "videoGenSelectable": false,
-            "musicGenSelectable": true,
+            "musicGenSelectable": false,
             "visionSelectable": false,
             "ttsSelectable": false,
             "sttSelectable": false
@@ -3065,7 +3073,8 @@
           "source": "https://google.com",
           "visible": false,
           "_hiddenReason": "superseded by lyria-3/3.5",
-          "_hiddenAt": "2026-08-23"
+          "_hiddenAt": "2026-08-23",
+          "hidden": true
         },
         "gemini-3.5-flash": {
           "label": "Gemini 3.5 Flash",
@@ -10762,10 +10771,10 @@
           ],
           "chatRole": "specialized",
           "uiPlacement": {
-            "capabilitiesSelectable": true,
+            "capabilitiesSelectable": false,
             "mainApiSelectable": false,
             "imageGenSelectable": false,
-            "videoGenSelectable": true,
+            "videoGenSelectable": false,
             "musicGenSelectable": false,
             "visionSelectable": false,
             "ttsSelectable": false,
@@ -10795,7 +10804,8 @@
           "source": "https://runway.com",
           "visible": false,
           "_hiddenReason": "Gen-3 Alpha retired 2026-07-08 (Runway changelog)",
-          "_hiddenAt": "2026-08-23"
+          "_hiddenAt": "2026-08-23",
+          "hidden": true
         },
         "gen3-alpha": {
           "label": "Gen-3 Alpha",
@@ -10805,10 +10815,10 @@
           ],
           "chatRole": "specialized",
           "uiPlacement": {
-            "capabilitiesSelectable": true,
+            "capabilitiesSelectable": false,
             "mainApiSelectable": false,
             "imageGenSelectable": false,
-            "videoGenSelectable": true,
+            "videoGenSelectable": false,
             "musicGenSelectable": false,
             "visionSelectable": false,
             "ttsSelectable": false,
@@ -10838,7 +10848,8 @@
           "source": "https://runway.com",
           "visible": false,
           "_hiddenReason": "Gen-3 Alpha retired 2026-07-08 (Runway changelog)",
-          "_hiddenAt": "2026-08-23"
+          "_hiddenAt": "2026-08-23",
+          "hidden": true
         },
         "gen4_5": {
           "label": "Runway Gen-4.5",
@@ -14169,6 +14180,6 @@
     }
   },
   "meta": {
-    "patched": "websearch-provider-coverage-v5.8.4"
+    "patched": "specialist-cleanup-v5.8.5"
   }
 }
