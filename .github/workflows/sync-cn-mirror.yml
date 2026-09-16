@@ -1,0 +1,94 @@
+name: Sync China mirror
+
+# The ONLY-TRUTH registry lives here. Chinese installs cannot reach GitHub
+# (Great Firewall), so they fall back to the China surface served from an
+# Alibaba Cloud OSS bucket behind nindeai.cn. Every push to main therefore has
+# to be mirrored — otherwise CN users silently stay on an old registry.
+#
+# Required repository secrets (Settings -> Secrets and variables -> Actions):
+#   ALIYUN_OSS_ACCESS_KEY_ID
+#   ALIYUN_OSS_ACCESS_KEY_SECRET
+#   ALIYUN_OSS_BUCKET          e.g. nindeai-site
+#   ALIYUN_OSS_ENDPOINT        e.g. oss-cn-hongkong.aliyuncs.com
+#
+# Until those exist the job SKIPS with a warning (it never fails the build),
+# and says exactly which secret is missing.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'ai-model-registry.json'
+      - '.github/workflows/sync-cn-mirror.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: cn-mirror-sync
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate registry shape
+        run: |
+          set -e
+          node -e "
+            const r = require('./ai-model-registry.json');
+            const v = r._meta && r._meta.version;
+            if (!v) { console.error('missing _meta.version'); process.exit(1); }
+            const n = r.models ? Object.keys(r.models).length : 0;
+            console.log('registry v' + v + ', ' + n + ' models');
+          "
+
+      - name: Check credentials
+        id: creds
+        env:
+          OSS_KEY_ID: ${{ secrets.ALIYUN_OSS_ACCESS_KEY_ID }}
+        run: |
+          if [ -z "$OSS_KEY_ID" ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::China mirror secrets are not configured. Add ALIYUN_OSS_ACCESS_KEY_ID, ALIYUN_OSS_ACCESS_KEY_SECRET, ALIYUN_OSS_BUCKET, ALIYUN_OSS_ENDPOINT to this repository. Until then the China mirror must be updated manually (see README)."
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install ossutil
+        if: steps.creds.outputs.ready == 'true'
+        run: |
+          set -e
+          curl -sSL https://gosspublic.alicdn.com/ossutil/1.7.19/ossutil64 -o ossutil
+          chmod +x ossutil
+          ./ossutil --version
+
+      - name: Upload registry to China mirror
+        if: steps.creds.outputs.ready == 'true'
+        env:
+          OSS_KEY_ID: ${{ secrets.ALIYUN_OSS_ACCESS_KEY_ID }}
+          OSS_KEY_SECRET: ${{ secrets.ALIYUN_OSS_ACCESS_KEY_SECRET }}
+          OSS_BUCKET: ${{ secrets.ALIYUN_OSS_BUCKET }}
+          OSS_ENDPOINT: ${{ secrets.ALIYUN_OSS_ENDPOINT }}
+        run: |
+          set -e
+          ./ossutil cp -f ai-model-registry.json \
+            "oss://$OSS_BUCKET/registry/ai-model-registry.json" \
+            --meta "Content-Type:application/json" \
+            -e "$OSS_ENDPOINT" -i "$OSS_KEY_ID" -k "$OSS_KEY_SECRET"
+          echo "uploaded to oss://$OSS_BUCKET/registry/ai-model-registry.json"
+
+      - name: Verify the live mirror serves this version
+        if: steps.creds.outputs.ready == 'true'
+        run: |
+          set -e
+          want=$(node -e "console.log(require('./ai-model-registry.json')._meta.version)")
+          for i in 1 2 3 4 5; do
+            got=$(curl -s "https://nindeai.cn/registry/ai-model-registry.json?cb=$RANDOM$i" \
+              | node -e "let d='';process.stdin.on('data',c=>d+=c).on('end',()=>{try{console.log(JSON.parse(d)._meta.version)}catch(e){console.log('unparseable')}})")
+            echo "attempt $i: want=$want got=$got"
+            [ "$want" = "$got" ] && { echo "China mirror now serves v$got"; exit 0; }
+            sleep 15
+          done
+          echo "::error::China mirror still serves $got (wanted $want) after 5 attempts"
+          exit 1
