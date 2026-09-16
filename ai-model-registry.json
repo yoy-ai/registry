@@ -1,8 +1,8 @@
 {
   "_meta": {
-    "version": "5.8.3",
+    "version": "5.8.4",
     "updated": "2026-09-16",
-    "description": "YOY Unified AI Model Registry — SINGLE SOURCE OF TRUTH. All provider/model data verified from official provider websites July 2026. Covers LLM chat, image gen, video gen, audio/TTS/STT, web search, embeddings, and music generation. Rebuilt 2026-08-23: legacy models hidden, specialists removed from chat, current models verified from official websites. | v5.8.2: zai vision-routing fix, coding-plan support per docs.z.ai (2026-09-16)",
+    "description": "YOY Unified AI Model Registry — SINGLE SOURCE OF TRUTH. All provider/model data verified from official provider websites July 2026. Covers LLM chat, image gen, video gen, audio/TTS/STT, web search, embeddings, and music generation. Rebuilt 2026-08-23: legacy models hidden, specialists removed from chat, current models verified from official websites. | v5.8.2: zai vision-routing fix, coding-plan support per docs.z.ai (2026-09-16) | v5.8.4: web-search capability matrix verified per provider (docs.z.ai web_search, docs.claude.com web_search tool, xAI live search, DashScope enable_search); Perplexity sonar + Z.AI GLM + Anthropic Claude now search-enabled on the same chat key.",
     "costTierLegend": {
       "$": "Free or near-free (<$0.50/1M tokens input)",
       "$$": "Budget ($0.50-$5/1M tokens input)",
@@ -68,7 +68,8 @@
             "reasoning": true,
             "writing": true,
             "coding": true,
-            "visionChat": true
+            "visionChat": true,
+            "webSearch": true
           },
           "strengths": [
             "reasoning",
@@ -127,7 +128,8 @@
             "reasoning": false,
             "writing": true,
             "coding": true,
-            "visionChat": true
+            "visionChat": true,
+            "webSearch": true
           },
           "strengths": [
             "speed",
@@ -685,7 +687,8 @@
             "reasoning": false,
             "writing": true,
             "coding": true,
-            "visionChat": true
+            "visionChat": true,
+            "webSearch": true
           },
           "strengths": [
             "speed",
@@ -1394,7 +1397,8 @@
           "costOut": 10.0,
           "capabilities": {
             "visionChat": true,
-            "toolCalling": true
+            "toolCalling": true,
+            "webSearch": true
           },
           "uiPlacement": {
             "mainApiSelectable": true,
@@ -1414,7 +1418,8 @@
           "costOut": 40.0,
           "capabilities": {
             "visionChat": true,
-            "toolCalling": true
+            "toolCalling": true,
+            "webSearch": true
           },
           "uiPlacement": {
             "mainApiSelectable": true,
@@ -1434,7 +1439,8 @@
           "costOut": 40.0,
           "capabilities": {
             "visionChat": true,
-            "toolCalling": true
+            "toolCalling": true,
+            "webSearch": true
           },
           "uiPlacement": {
             "mainApiSelectable": true,
@@ -1508,7 +1514,8 @@
             "visionChat": true,
             "structuredOutput": true,
             "streaming": true,
-            "batchApi": true
+            "batchApi": true,
+            "webSearch": true
           },
           "strengths": [
             "most intelligent + aligned OpenAI model",
@@ -1565,7 +1572,8 @@
             "reasoning": true,
             "writing": true,
             "coding": true,
-            "visionChat": true
+            "visionChat": true,
+            "webSearch": true
           },
           "strengths": [
             "reasoning",
@@ -1625,7 +1633,8 @@
             "reasoning": true,
             "writing": true,
             "coding": true,
-            "visionChat": true
+            "visionChat": true,
+            "webSearch": true
           },
           "strengths": [
             "reasoning",
@@ -1687,7 +1696,8 @@
             "reasoning": true,
             "writing": true,
             "coding": true,
-            "visionChat": true
+            "visionChat": true,
+            "webSearch": true
           },
           "strengths": [
             "speed",
@@ -1856,7 +1866,7 @@
             "writing": true,
             "coding": true,
             "visionChat": true,
-            "webSearch": false,
+            "webSearch": true,
             "structuredOutput": true,
             "streaming": true,
             "batchApi": true
@@ -1910,7 +1920,7 @@
             "writing": true,
             "coding": true,
             "visionChat": true,
-            "webSearch": false,
+            "webSearch": true,
             "structuredOutput": true,
             "streaming": true,
             "batchApi": true
@@ -1966,7 +1976,7 @@
             "writing": true,
             "coding": true,
             "visionChat": true,
-            "webSearch": false,
+            "webSearch": true,
             "structuredOutput": true,
             "streaming": true,
             "batchApi": true
@@ -2020,7 +2030,8 @@
             "toolCalling": true,
             "reasoning": true,
             "coding": true,
-            "visionChat": true
+            "visionChat": true,
+            "webSearch": true
           },
           "strengths": [
             "flagship",
@@ -2064,7 +2075,8 @@
             "visionChat": true,
             "structuredOutput": true,
             "streaming": true,
-            "batchApi": true
+            "batchApi": true,
+            "webSearch": true
           },
           "strengths": [
             "demanding reasoning + long-running agents",
@@ -2120,7 +2132,8 @@
             "reasoning": true,
             "writing": true,
             "coding": true,
-            "visionChat": true
+            "visionChat": true,
+            "webSearch": true
           },
           "strengths": [
             "multimodal",
@@ -2180,7 +2193,8 @@
             "reasoning": true,
             "writing": true,
             "coding": true,
-            "visionChat": true
+            "visionChat": true,
+            "webSearch": true
           },
           "strengths": [
             "speed",
@@ -2360,7 +2374,8 @@
             "reasoning": true,
             "writing": true,
             "coding": true,
-            "visionChat": true
+            "visionChat": true,
+            "webSearch": true
           },
           "strengths": [
             "multimodal",
@@ -3064,7 +3079,8 @@
           "costOut": 3.0,
           "capabilities": {
             "visionChat": true,
-            "toolCalling": true
+            "toolCalling": true,
+            "webSearch": true
           },
           "uiPlacement": {
             "mainApiSelectable": true,
@@ -3084,7 +3100,8 @@
           "costOut": 0.4,
           "capabilities": {
             "visionChat": true,
-            "toolCalling": true
+            "toolCalling": true,
+            "webSearch": true
           },
           "uiPlacement": {
             "mainApiSelectable": true,
@@ -3588,7 +3605,8 @@
             "coding": true,
             "visionChat": false,
             "structuredOutput": true,
-            "streaming": true
+            "streaming": true,
+            "webSearch": true
           },
           "strengths": [
             "frontier coding (+50% Z.ai Code Bench vs GLM-5.2)",
@@ -3635,7 +3653,8 @@
             "coding": true,
             "streaming": true,
             "structuredOutput": true,
-            "visionChat": false
+            "visionChat": false,
+            "webSearch": true
           },
           "strengths": [
             "744B params",
@@ -3683,7 +3702,8 @@
             "coding": true,
             "streaming": true,
             "structuredOutput": true,
-            "visionChat": false
+            "visionChat": false,
+            "webSearch": true
           },
           "strengths": [
             "8-hour long-horizon task capability",
@@ -3729,7 +3749,8 @@
             "coding": true,
             "streaming": true,
             "visionChat": false,
-            "imageIn": false
+            "imageIn": false,
+            "webSearch": true
           },
           "strengths": [
             "open-weight",
@@ -3776,7 +3797,8 @@
             "coding": true,
             "streaming": true,
             "structuredOutput": true,
-            "visionChat": false
+            "visionChat": false,
+            "webSearch": true
           },
           "strengths": [
             "Optimized for OpenClaw agent scenarios",
@@ -3822,7 +3844,8 @@
             "coding": true,
             "streaming": true,
             "structuredOutput": true,
-            "visionChat": false
+            "visionChat": false,
+            "webSearch": true
           },
           "strengths": [
             "Agentic coding",
@@ -3874,7 +3897,8 @@
             "coding": true,
             "streaming": true,
             "structuredOutput": true,
-            "visionChat": false
+            "visionChat": false,
+            "webSearch": true
           },
           "strengths": [
             "Ultra cheap",
@@ -3918,7 +3942,8 @@
             "coding": true,
             "streaming": true,
             "structuredOutput": true,
-            "visionChat": false
+            "visionChat": false,
+            "webSearch": true
           },
           "strengths": [
             "200K context",
@@ -3969,7 +3994,8 @@
             "coding": true,
             "streaming": true,
             "structuredOutput": true,
-            "visionChat": false
+            "visionChat": false,
+            "webSearch": true
           },
           "strengths": [
             "Strong value mid-tier",
@@ -4021,7 +4047,8 @@
             "coding": true,
             "streaming": true,
             "structuredOutput": true,
-            "visionChat": false
+            "visionChat": false,
+            "webSearch": true
           },
           "strengths": [
             "Premium tier",
@@ -4072,7 +4099,8 @@
             "coding": true,
             "streaming": true,
             "structuredOutput": true,
-            "visionChat": false
+            "visionChat": false,
+            "webSearch": true
           },
           "strengths": [
             "Cheap",
@@ -4123,7 +4151,8 @@
             "coding": true,
             "streaming": true,
             "structuredOutput": true,
-            "visionChat": false
+            "visionChat": false,
+            "webSearch": true
           },
           "strengths": [
             "Fast premium"
@@ -4218,7 +4247,8 @@
             "coding": true,
             "streaming": true,
             "structuredOutput": true,
-            "visionChat": false
+            "visionChat": false,
+            "webSearch": true
           },
           "strengths": [
             "Free",
@@ -4271,7 +4301,8 @@
             "writing": true,
             "coding": true,
             "streaming": true,
-            "structuredOutput": true
+            "structuredOutput": true,
+            "webSearch": true
           },
           "strengths": [
             "Free"
@@ -4764,7 +4795,8 @@
             "toolUse": true,
             "jsonMode": true,
             "streaming": true,
-            "visionChat": true
+            "visionChat": true,
+            "webSearch": true
           },
           "releaseDate": "2026-09",
           "hidden": false
@@ -5481,7 +5513,8 @@
             "writing": true,
             "coding": true,
             "streaming": true,
-            "structuredOutput": true
+            "structuredOutput": true,
+            "webSearch": true
           },
           "strengths": [
             "Current xAI flagship",
@@ -6538,7 +6571,8 @@
             "reasoning": true,
             "writing": true,
             "coding": true,
-            "visionChat": false
+            "visionChat": false,
+            "webSearch": true
           },
           "strengths": [
             "largest Qwen",
@@ -6887,7 +6921,8 @@
             "reasoning": true,
             "writing": true,
             "coding": true,
-            "visionChat": false
+            "visionChat": false,
+            "webSearch": true
           },
           "strengths": [
             "cloud-managed best",
@@ -7272,7 +7307,8 @@
             "coding": true,
             "streaming": true,
             "structuredOutput": true,
-            "visionChat": false
+            "visionChat": false,
+            "webSearch": true
           },
           "strengths": [
             "2.4T params",
@@ -7439,7 +7475,8 @@
             "reasoning": false,
             "writing": true,
             "coding": false,
-            "visionChat": false
+            "visionChat": false,
+            "webSearch": true
           },
           "strengths": [
             "live web search",
@@ -7496,7 +7533,8 @@
             "reasoning": false,
             "writing": true,
             "coding": false,
-            "visionChat": false
+            "visionChat": false,
+            "webSearch": true
           },
           "strengths": [
             "live web search",
@@ -7593,7 +7631,8 @@
           "costIn": 1.0,
           "costOut": 1.0,
           "capabilities": {
-            "toolCalling": false
+            "toolCalling": false,
+            "webSearch": true
           },
           "uiPlacement": {
             "mainApiSelectable": false
@@ -7611,7 +7650,8 @@
           "costIn": 2.0,
           "costOut": 8.0,
           "capabilities": {
-            "toolCalling": false
+            "toolCalling": false,
+            "webSearch": true
           },
           "uiPlacement": {
             "mainApiSelectable": false
@@ -7629,7 +7669,8 @@
           "costIn": 2.0,
           "costOut": 8.0,
           "capabilities": {
-            "toolCalling": false
+            "toolCalling": false,
+            "webSearch": true
           },
           "uiPlacement": {
             "mainApiSelectable": false
@@ -8455,7 +8496,7 @@
             "writing": true,
             "coding": true,
             "visionChat": true,
-            "webSearch": true,
+            "webSearch": false,
             "structuredOutput": true,
             "streaming": true,
             "batchApi": true
@@ -12545,7 +12586,7 @@
             "writing": true,
             "coding": true,
             "visionChat": true,
-            "webSearch": true,
+            "webSearch": false,
             "structuredOutput": true,
             "streaming": true,
             "batchApi": true
@@ -14128,6 +14169,6 @@
     }
   },
   "meta": {
-    "patched": "hidden-selectable-leak-fix"
+    "patched": "websearch-provider-coverage-v5.8.4"
   }
 }
