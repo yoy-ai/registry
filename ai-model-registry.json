@@ -1,8 +1,8 @@
 {
   "_meta": {
-    "version": "5.9.0",
-    "updated": "2026-09-16",
-    "description": "YOY Unified AI Model Registry — SINGLE SOURCE OF TRUTH. All provider/model data verified from official provider websites July 2026. Covers LLM chat, image gen, video gen, audio/TTS/STT, web search, embeddings, and music generation. Rebuilt 2026-08-23: legacy models hidden, specialists removed from chat, current models verified from official websites. | v5.8.2: zai vision-routing fix, coding-plan support per docs.z.ai (2026-09-16) | v5.8.4: web-search capability matrix verified per provider (docs.z.ai web_search, docs.claude.com web_search tool, xAI live search, DashScope enable_search); Perplexity sonar + Z.AI GLM + Anthropic Claude now search-enabled on the same chat key. | v5.8.5: specialist-surface cleanup — dead/never-existed ids hidden (dall-e-3 removed 2026-05-12, dall-e-4/sora-turbo/veo-4 non-existent, imagen-3.0 shut down, lyria-2/3 superseded by Lyria 3.5). | v5.9.0 (schema v1): LOCKED SCHEMA - fixed vocabulary, required fields and cross-field invariants; emoji derived deterministically for every model; every visible model declares pricing provenance (costIn/costOut/costTier/costUnit, or costUnit=unknown + unverified flag); category aliases and legacy field names normalised; validated by scripts/validate-registry.js and enforced by the auto-updater publish gate. Spec: src/ai/REGISTRY-SCHEMA.md",
+    "version": "5.9.1",
+    "updated": "2026-09-18",
+    "description": "YOY Unified AI Model Registry — SINGLE SOURCE OF TRUTH. All provider/model data verified from official provider websites July 2026. Covers LLM chat, image gen, video gen, audio/TTS/STT, web search, embeddings, and music generation. Rebuilt 2026-08-23: legacy models hidden, specialists removed from chat, current models verified from official websites. | v5.8.2: zai vision-routing fix, coding-plan support per docs.z.ai (2026-09-16) | v5.8.4: web-search capability matrix verified per provider (docs.z.ai web_search, docs.claude.com web_search tool, xAI live search, DashScope enable_search); Perplexity sonar + Z.AI GLM + Anthropic Claude now search-enabled on the same chat key. | v5.8.5: specialist-surface cleanup — dead/never-existed ids hidden (dall-e-3 removed 2026-05-12, dall-e-4/sora-turbo/veo-4 non-existent, imagen-3.0 shut down, lyria-2/3 superseded by Lyria 3.5). | v5.9.0 (schema v1): LOCKED SCHEMA - fixed vocabulary, required fields and cross-field invariants; emoji derived deterministically for every model; every visible model declares pricing provenance (costIn/costOut/costTier/costUnit, or costUnit=unknown + unverified flag); category aliases and legacy field names normalised; validated by scripts/validate-registry.js and enforced by the auto-updater publish gate. Spec: src/ai/REGISTRY-SCHEMA.md | v5.9.1: official Z.AI and Alibaba Model Studio audit for GLM-5.3/Flash/FlashX and Qwen3.8 Max/Flash.",
     "costTierLegend": {
       "$": "Free or near-free (<$0.50/1M tokens input)",
       "$$": "Budget ($0.50-$5/1M tokens input)",
@@ -24,9 +24,9 @@
     },
     "lastAudited": "2026-08-09",
     "auditNote": "Live-verified Aug 9 2026: GLM-5.2 pricing corrected, DeepSeek retirement flagged, GPT-5.6 pricing corrected, grok-4.6 removed, M3 ctx 1M, added Sonnet 5/Opus 4.8/qwen3.5-plus/qwen3-max/deepseek-v4-pro, 8 empty providers removed.",
-    "updatedAt": "2026-09-16T10:23:33.326Z",
+    "updatedAt": "2026-09-18T09:46:30.743Z",
     "schemaVersion": 1,
-    "lastCompleted": "2026-09-16",
+    "lastCompleted": "2026-09-18",
     "completionNote": "Schema v1 completion pass: derived family/strengths/advice/riskFlags/chatRole/costTier, normalised urls + auth, honest pricing provenance."
   },
   "providers": {
@@ -4570,7 +4570,7 @@
       "auth": "bearer",
       "website": "https://z.ai",
       "docsUrl": "https://docs.z.ai",
-      "pricingUrl": "https://z.ai/model-api#pricing",
+      "pricingUrl": "https://docs.z.ai/guides/overview/pricing",
       "models": {
         "glm-5.3": {
           "label": "GLM-5.3",
@@ -4593,7 +4593,7 @@
           "costIn": 1.4,
           "costOut": 4.4,
           "costUnit": "per_1m_tokens",
-          "contextWindow": 1048576,
+          "contextWindow": 1000000,
           "maxOutput": 131072,
           "capabilities": {
             "textIn": true,
@@ -4606,7 +4606,8 @@
             "visionChat": false,
             "structuredOutput": true,
             "streaming": true,
-            "webSearch": true
+            "webSearch": true,
+            "videoIn": false
           },
           "strengths": [
             "frontier coding (+50% Z.ai Code Bench vs GLM-5.2)",
@@ -4615,18 +4616,18 @@
             "1M context"
           ],
           "advice": {
-            "summary": "Z.AI's newest flagship (Aug 14 2026). Same base as GLM-5.2, large post-training gains in coding and long-horizon agents.",
+            "summary": "Z.AI flagship reasoning model for complex coding and agent work.",
             "recommendedFor": [
               "Coding agents",
               "Agentic workflows",
               "Cybersecurity tasks"
             ],
             "avoidFor": [],
-            "userHint": "Newest GLM flagship. Text-only I/O, 1M context, 128K output. Available via Coding Plan & ZCode; General API pricing now listed."
+            "userHint": "Use GLM-5.3 for demanding text-only reasoning and coding."
           },
           "riskFlags": [],
-          "lastVerified": "2026-08-23",
-          "source": "https://docs.z.ai",
+          "lastVerified": "2026-09-18",
+          "source": "https://docs.z.ai/guides/llm/glm-5.3",
           "releaseDate": "2026-08-14",
           "endpoint": "/chat/completions",
           "costCachedIn": 0.26
@@ -5887,9 +5888,9 @@
           "addedAt": "2026-08-23"
         },
         "glm-5.3-flash": {
-          "label": "GLM-5.3-Flash (Multimodal)",
+          "label": "GLM-5.3 Flash",
           "emoji": "👁",
-          "family": "glm-5.3",
+          "family": "glm-5",
           "categories": [
             "chat",
             "vision"
@@ -5902,11 +5903,12 @@
             "musicGenSelectable": false,
             "ttsSelectable": false,
             "sttSelectable": false,
-            "visionSelectable": true
+            "visionSelectable": true,
+            "capabilitiesSelectable": true
           },
           "costTier": "$",
-          "costUnit": "unknown",
-          "contextWindow": 1048576,
+          "costUnit": "per_1m_tokens",
+          "contextWindow": 1000000,
           "maxOutput": 131072,
           "capabilities": {
             "textIn": true,
@@ -5915,37 +5917,39 @@
             "audioIn": false,
             "videoIn": true,
             "toolCalling": true,
-            "jsonMode": true,
-            "streaming": true,
+            "imageGeneration": false,
+            "videoGeneration": false,
+            "reasoning": true,
+            "writing": true,
+            "coding": true,
             "visionChat": true,
             "webSearch": true
           },
           "strengths": [
-            "vision",
-            "web search",
-            "document reading",
-            "video input"
+            "multimodal",
+            "speed",
+            "coding",
+            "agent workflows"
           ],
           "advice": {
-            "summary": "GLM-5.3-Flash (Multimodal) - general assistant.",
+            "summary": "Low-cost native multimodal GLM model for visual coding and agent workflows.",
             "recommendedFor": [
-              "Vision",
-              "Web Search",
-              "Document Reading",
-              "Video Input"
+              "Website work",
+              "Image and video understanding",
+              "Fast agent tasks"
             ],
             "avoidFor": [
-              "Image generation",
-              "Video generation"
+              "Image generation"
             ],
-            "userHint": "GLM-5.3-Flash (Multimodal) is best for vision."
+            "userHint": "Best Z.AI choice when speed and vision matter."
           },
-          "riskFlags": [
-            "unverified"
-          ],
-          "source": "https://docs.z.ai",
+          "riskFlags": [],
+          "source": "https://docs.z.ai/guides/vlm/glm-5.3-flash",
           "releaseDate": "2026-09",
-          "hidden": false
+          "hidden": false,
+          "costIn": 0.15,
+          "costOut": 0.5,
+          "lastVerified": "2026-09-18"
         },
         "glm-5v-turbo": {
           "label": "glm-5v-turbo",
@@ -6120,6 +6124,72 @@
           "source": "https://docs.z.ai",
           "releaseDate": "2026-09",
           "hidden": false
+        },
+        "glm-5.3-flashx": {
+          "label": "GLM-5.3 FlashX",
+          "emoji": "👁",
+          "family": "glm-5",
+          "categories": [
+            "chat",
+            "vision"
+          ],
+          "chatRole": "primary",
+          "uiPlacement": {
+            "mainApiSelectable": true,
+            "imageGenSelectable": false,
+            "videoGenSelectable": false,
+            "musicGenSelectable": false,
+            "ttsSelectable": false,
+            "sttSelectable": false,
+            "visionSelectable": true,
+            "capabilitiesSelectable": true
+          },
+          "costTier": "$$",
+          "costUnit": "per_1m_tokens",
+          "contextWindow": 1000000,
+          "maxOutput": 131072,
+          "capabilities": {
+            "textIn": true,
+            "imageIn": true,
+            "pdfIn": true,
+            "audioIn": false,
+            "videoIn": true,
+            "toolCalling": true,
+            "imageGeneration": false,
+            "videoGeneration": false,
+            "reasoning": true,
+            "writing": true,
+            "coding": true,
+            "visionChat": true,
+            "webSearch": true
+          },
+          "strengths": [
+            "multimodal",
+            "speed",
+            "coding",
+            "agent workflows"
+          ],
+          "advice": {
+            "summary": "Faster GLM-5.3 Flash variant for low-latency multimodal workflows.",
+            "recommendedFor": [
+              "Website work",
+              "Image and video understanding",
+              "Fast agent tasks"
+            ],
+            "avoidFor": [
+              "Image generation"
+            ],
+            "userHint": "Best Z.AI choice when speed and vision matter."
+          },
+          "riskFlags": [
+            "restricted"
+          ],
+          "source": "https://docs.z.ai/guides/vlm/glm-5.3-flash",
+          "releaseDate": "2026-09",
+          "hidden": false,
+          "costIn": 0.37,
+          "costOut": 1.25,
+          "lastVerified": "2026-09-18"
         }
       },
       "endpoint": "https://api.z.ai/api/paas/v4",
@@ -7968,11 +8038,11 @@
     },
     "qwen": {
       "name": "Qwen (Alibaba Cloud)",
-      "baseUrl": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+      "baseUrl": "https://{WorkspaceId}.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
       "auth": "bearer",
       "website": "https://www.alibabacloud.com/product/model-studio",
-      "docsUrl": "https://www.alibabacloud.com/help/en/model-studio",
-      "pricingUrl": "https://www.alibabacloud.com/help/en/model-studio/billing",
+      "docsUrl": "https://www.alibabacloud.com/help/en/model-studio/compatibility-of-openai-with-dashscope",
+      "pricingUrl": "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
       "models": {
         "qwen3-235b-a22b": {
           "label": "Qwen 3 235B (Flagship)",
@@ -8757,7 +8827,7 @@
         "qwen3.8-max": {
           "label": "Qwen3.8 Max",
           "emoji": "💬",
-          "family": "qwen3.8",
+          "family": "qwen3",
           "categories": [
             "chat"
           ],
@@ -8769,47 +8839,51 @@
             "musicGenSelectable": false,
             "ttsSelectable": false,
             "sttSelectable": false,
-            "visionSelectable": false
+            "visionSelectable": true,
+            "capabilitiesSelectable": true
           },
-          "costTier": "$$$",
-          "costIn": 0.8,
-          "costOut": 2.4,
+          "costTier": "$$",
+          "costIn": 2,
+          "costOut": 6,
           "costUnit": "per_1m_tokens",
-          "contextWindow": 1048576,
-          "maxOutput": 32768,
+          "contextWindow": 1000000,
+          "maxOutput": 131072,
           "capabilities": {
             "textIn": true,
-            "imageIn": false,
+            "imageIn": true,
+            "pdfIn": true,
+            "audioIn": false,
+            "videoIn": true,
             "toolCalling": true,
+            "imageGeneration": false,
+            "videoGeneration": false,
             "reasoning": true,
             "writing": true,
             "coding": true,
-            "streaming": true,
-            "structuredOutput": true,
-            "visionChat": false,
+            "visionChat": true,
             "webSearch": true
           },
           "strengths": [
-            "2.4T params",
-            "multimodal",
-            "1M context",
-            "second only to Fable 5"
+            "frontier coding",
+            "long-horizon agents",
+            "vision",
+            "office productivity"
           ],
           "advice": {
-            "summary": "Alibaba flagship — 2.4T params, competitive with frontier models.",
+            "summary": "Qwen flagship multimodal model for long-horizon coding and professional workflows.",
             "recommendedFor": [
-              "Complex tasks",
-              "Coding",
-              "Multimodal"
+              "Complex coding",
+              "Long documents and videos",
+              "Business workflows"
             ],
-            "avoidFor": [],
-            "userHint": "Powerful model from Alibaba, ranked second only to Claude Fable 5."
+            "avoidFor": [
+              "Lowest-cost high-volume tasks"
+            ],
+            "userHint": "Use Qwen3.8 Max for demanding multimodal work."
           },
-          "riskFlags": [
-            "preview"
-          ],
-          "lastVerified": "2026-08-01",
-          "source": "https://www.marktechpost.com/2026/07/19/alibaba-previews-qwen3-8-max/"
+          "riskFlags": [],
+          "lastVerified": "2026-09-18",
+          "source": "https://www.alibabacloud.com/help/en/model-studio/qwen3-8-max"
         },
         "qwen-4-coder": {
           "label": "Qwen 4 Coder",
@@ -8902,6 +8976,68 @@
           "riskFlags": [],
           "lastVerified": "2026-08-09",
           "source": "https://help.aliyun.com/zh/model-studio"
+        },
+        "qwen3.8-flash": {
+          "label": "Qwen3.8 Flash",
+          "emoji": "⚡",
+          "family": "qwen3",
+          "categories": [
+            "chat",
+            "vision"
+          ],
+          "chatRole": "primary",
+          "uiPlacement": {
+            "mainApiSelectable": true,
+            "imageGenSelectable": false,
+            "videoGenSelectable": false,
+            "musicGenSelectable": false,
+            "ttsSelectable": false,
+            "sttSelectable": false,
+            "visionSelectable": true,
+            "capabilitiesSelectable": true
+          },
+          "costTier": "$",
+          "costIn": 0.15,
+          "costOut": 0.47,
+          "costUnit": "per_1m_tokens",
+          "contextWindow": 1000000,
+          "maxOutput": 131072,
+          "capabilities": {
+            "textIn": true,
+            "imageIn": true,
+            "pdfIn": true,
+            "audioIn": false,
+            "videoIn": true,
+            "toolCalling": true,
+            "imageGeneration": false,
+            "videoGeneration": false,
+            "reasoning": true,
+            "writing": true,
+            "coding": true,
+            "visionChat": true,
+            "webSearch": true
+          },
+          "strengths": [
+            "multimodal",
+            "speed",
+            "coding",
+            "agent workflows"
+          ],
+          "advice": {
+            "summary": "Fast Qwen multimodal model with 1M context for coding and agent workflows.",
+            "recommendedFor": [
+              "Everyday multimodal chat",
+              "High-concurrency agents",
+              "Long documents and videos"
+            ],
+            "avoidFor": [
+              "Image or video generation"
+            ],
+            "userHint": "Best Qwen value when speed and vision matter."
+          },
+          "riskFlags": [],
+          "lastVerified": "2026-09-18",
+          "source": "https://www.alibabacloud.com/help/en/model-studio/qwen3-8-flash"
         }
       },
       "endpoint": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
